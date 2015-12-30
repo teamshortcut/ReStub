@@ -11,7 +11,7 @@ name = "" #empty variables that will later be used to store the name and categor
 categories = ""
 
 header = {
-		'Authorization' : 'CloudSight meSNWQPE7LZ_ybXLMlDflA' #authorization header for use with the API
+		'Authorization' : [key] #authorization header for use with the API
 	}
 
 #declare functions	
