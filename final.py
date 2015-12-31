@@ -13,7 +13,7 @@ name = "" #empty variables that will later be used to store the name and categor
 categories = ""
 
 header = {
-		'Authorization' : [key] #authorization header for use with the API
+		'Authorization' : 'CloudSight meSNWQPE7LZ_ybXLMlDflA' #authorization header for use with the API
 	}
 
 #declare functions
@@ -31,20 +31,17 @@ def flashOff(num): #flashes the LED off, with paramater for which GPIO port it u
 
 def end(success):
 	if success == True:
-		flashOn(6) #flash LED green, then run everything from the beginning
+		flashOn(6) #whatever green LED number is
         time.sleep(5)
         flashOff(6)
-		time.sleep(1)
-		start()
 	else:
-		flashOn(7) #flash LED red, then run everything from the beginning
+		flashOn(7) #whatever red LED number is
         time.sleep(5)
         flashOff(7)
-		time.sleep(1)
-        start()
 
 def postRequest(): #sends the post request to the API, sending the image. Will return a token.
 	global URL #lets the variable URL be used outside of this function.
+	URL = 'http://api.cloudsightapi.com/image_responses/' #makes sure URL is reset
 	print("Here we go again...")
 	imageFile = {'image_request[image]': ('image.jpg', open('image.jpg', 'rb'), 'image/jpg')} #assigns the image to send to a variable
 	print(imageFile)
@@ -101,14 +98,27 @@ def getRequest(): #sends the GET request to the API. Will return result of image
 		print ("Not sure what happened there...")
 		print(rGet.status_code)
 		print(rGet.text)
-		time.sleep(5)
+		time.sleep(2)
+		end(false)
 
 def start(): #function to run at start
-	#turn off all lights
-	flashOff(5)
+	flashOff(5) #turn off LEDs
 	flashOff(6)
-	flashOff(7)	
-		while True:
+	flashOff(7)
+	
+	#initialize variables
+	LOCALE = 'en-US' #locale for use with API
+	LANGUAGE = 'en-US' #language for use with API	
+	URL = 'http://api.cloudsightapi.com/image_responses/' #url for use with the GET request to the API
+
+	name = "" #empty variables that will later be used to store the name and categories of the API's response
+	categories = ""
+
+	header = {
+		'Authorization' : 'CloudSight meSNWQPE7LZ_ybXLMlDflA' #authorization header for use with the API
+	}
+
+	while True:
 		GPIO.setmode(GPIO.BCM)
 		GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 		input_state = GPIO.input(18)
@@ -122,7 +132,7 @@ def start(): #function to run at start
 				camera.stop_preview()
 				flashOff(5) #flash LED off
 			postRequest() #run the POST request, starting the API section of the code
-		else:
-			print("Loop again")
-		
+		#else:
+			#print("Loop again")
+			
 start() #starts the first function
