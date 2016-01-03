@@ -32,12 +32,12 @@ def flashOff(num): #flashes the LED off, with paramater for which GPIO port it u
 def end(success):
 	if success == True:
 		flashOn(6) #whatever green LED number is
-        time.sleep(5)
-        flashOff(6)
+        	time.sleep(5)
+        	flashOff(6)
 	else:
 		flashOn(7) #whatever red LED number is
-        time.sleep(5)
-        flashOff(7)
+        	time.sleep(5)
+        	flashOff(7)
 
 def postRequest(): #sends the post request to the API, sending the image. Will return a token.
 	global URL #lets the variable URL be used outside of this function.
