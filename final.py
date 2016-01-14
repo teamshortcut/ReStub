@@ -84,7 +84,7 @@ def getRequest(): #sends the GET request to the API. Will return result of image
 			print("no categories")
 			categories = "none"
 		
-		if ("cigar" in name or "drugs" in categories or "adult" in categories or "brown" in name or "white" in name): #check to see if the result returned was a cigarette
+		if ("cigar" in name or "drugs" in categories or "adult" in categories or "brown" in name): #check to see if the result returned was a cigarette
 			print("Yup, that's a cigarette.")
 			time.sleep(2)
 			#run final function successfully
