@@ -115,7 +115,7 @@ def start(): #function to run at start
 	categories = ""
 
 	header = {
-		'Authorization' : 'CloudSight meSNWQPE7LZ_ybXLMlDflA' #authorization header for use with the API
+		'Authorization' : 'CloudSight XXX' #authorization header for use with the API
 	}
 
 	while True:
